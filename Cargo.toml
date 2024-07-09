@@ -1,0 +1,20 @@
+[package]
+name = "th3sw4n"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gtk = { version = "0.8.2", package = "gtk4", features = ["v4_12"] }
+glib = "0.10"
+rodio = "0.14"
+rand = "0.8"
+tokio = { version = "1.38.0", features = ["full"] }
+async-std = "1.10.0"
+lazy_static = "1.4"
+winapi = { version = "0.3", features = ["winuser"] }
+winres = "0.1"
+walkdir = "2.3"
+sodiumoxide = "0.2.7"
+
+[profile.release]
+# path = "build/release"
