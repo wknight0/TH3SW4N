@@ -220,7 +220,7 @@ pub fn build_ui(app: &Application) {
         if &codetext_shared2.text() == &format!(">: 4 8 15 16 23 42") {
             codetext_shared2.set_text(&format!(">:"));
             *codetext_values_shared2 = 0;
-            // Notifies loop to reset and decrypts files
+            // Notifies loop to reset and decrypts 5 files
             controller::decrypt_user_files();
             *SHOULD_RESET.lock().unwrap() = true;
         } else {
